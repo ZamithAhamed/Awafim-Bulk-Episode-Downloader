@@ -1,3 +1,4 @@
+# getDownloadLink.py
 import requests
 import time
 
@@ -7,7 +8,6 @@ def get_final_download_link(initial_url, max_retries=3, retry_delay=5):
         "Referer": "https://www.awafim.tv/",
     }
 
-    # Step 1: Get redirected URL
     for attempt in range(max_retries):
         response = requests.get(initial_url, headers=headers, allow_redirects=False)
         if 'Location' not in response.headers:
@@ -18,7 +18,7 @@ def get_final_download_link(initial_url, max_retries=3, retry_delay=5):
         print(f"Step 1 - Redirected URL (Attempt {attempt + 1}):", redirected_url)
 
         if redirected_url != initial_url:
-            break  # Proceed if redirection happened
+            break
         else:
             print("Redirected URL is the same as the initial URL. Retrying...")
             time.sleep(retry_delay)
@@ -27,7 +27,6 @@ def get_final_download_link(initial_url, max_retries=3, retry_delay=5):
         print("Failed to get a different redirection URL after retries.")
         return None
 
-    # Step 2: Send POST request to get the final download link
     response = requests.post(redirected_url, headers=headers, allow_redirects=False)
     if 'Location' not in response.headers:
         print("Failed to get the final file download URL")
@@ -37,10 +36,3 @@ def get_final_download_link(initial_url, max_retries=3, retry_delay=5):
     print("Step 2 - Final Download Link:", final_download_url)
 
     return final_download_url
-
-# Example Usage
-initial_url = "https://www.awafim.tv/titles/212161485483413589-vikings-valhalla/S01/E03/download-0-0"
-final_link = get_final_download_link(initial_url)
-
-if final_link:
-    print("\nFinal File Download URL:", final_link)
