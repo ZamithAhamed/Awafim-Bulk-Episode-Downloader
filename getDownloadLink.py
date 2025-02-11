@@ -15,7 +15,7 @@ def get_final_download_link(initial_url, max_retries=3, retry_delay=5):
             return None
 
         redirected_url = response.headers['Location']
-        print(f"Step 1 - Redirected URL (Attempt {attempt + 1}):", redirected_url)
+        # print(f"Step 1 - Redirected URL (Attempt {attempt + 1}):", redirected_url)
 
         if redirected_url != initial_url:
             break
@@ -33,6 +33,6 @@ def get_final_download_link(initial_url, max_retries=3, retry_delay=5):
         return None
 
     final_download_url = response.headers['Location']
-    print("Step 2 - Final Download Link:", final_download_url)
+    # print("Step 2 - Final Download Link:", final_download_url)
 
     return final_download_url
