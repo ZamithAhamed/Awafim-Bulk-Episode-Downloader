@@ -51,6 +51,8 @@ This will open a web interface in your browser where you can:
 - Select the seasons you want to download.
 - The app will display progress for each episode downloaded.
 
+<img width="772" alt="Interface" src="https://github.com/user-attachments/assets/933cd1f3-2537-4c3e-9427-150455ae1f08" />
+
 ### 2. **Bulk Download via Command Line**
 
 
