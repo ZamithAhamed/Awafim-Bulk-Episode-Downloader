@@ -58,6 +58,9 @@ def download_episode(episode_url, download_folder, episode_name, progress_bar):
         
         episode_path = os.path.join(download_folder, episode_name)
 
+        # Ensure the download folder exists
+        os.makedirs(download_folder, exist_ok=True)
+        
         # This will be used to clear the previous display output and replace with new data
         status_placeholder = st.empty()
 
